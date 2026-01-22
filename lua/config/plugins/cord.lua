@@ -15,7 +15,7 @@ return {
 
   -- Display settings
   display = {
-    theme = "classic", -- Options: 'default', 'atom', 'catppuccin', 'minecraft', 'classic'
+    theme = "default", -- Options: 'default', 'atom', 'catppuccin', 'minecraft', 'classic'
     flavor = "dark", -- Options: 'dark', 'light', 'accent'
     view = "full", -- Options: 'full', 'editor', 'asset', 'auto'
     swap_fields = false, -- Show workspace before filename
@@ -130,8 +130,7 @@ return {
     {
       label = "View Repository",
       url = function(opts)
-        -- return opts.repo_url or "https://github.com"
-        return opts.repo_url
+        return opts.repo_url or "https://github.com"
       end,
     },
     -- {

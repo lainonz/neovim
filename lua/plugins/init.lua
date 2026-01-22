@@ -303,4 +303,73 @@ return {
     "MunifTanjim/nui.nvim",
     lazy = true,
   },
+  -- ==================== OpenCode.nvim ====================
+  {
+    "NickvanDyke/opencode.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = { "OpencodeAsk", "OpencodeSelect", "OpencodeToggle", "OpencodePrompt" },
+    keys = {
+      { "<leader>oa", desc = "Opencode: Ask" },
+      { "<leader>os", desc = "Opencode: Select" },
+      { "<leader>ot", desc = "Opencode: Toggle" },
+      { "<leader>op", desc = "Opencode: Prompt" },
+      { "go", mode = { "n", "x" }, desc = "Opencode: Add range" },
+    },
+    config = function()
+      -- Set autoread for reload functionality
+      vim.o.autoread = true
+
+      -- Configuration options
+      ---@type opencode.Opts
+      vim.g.opencode_opts = {
+        events = {
+          reload = true, -- Auto-reload edited buffers
+        },
+        provider = {
+          enabled = "terminal", -- Use Neovim terminal
+        },
+      }
+
+      -- Keymaps
+      vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+        require("opencode").ask("@this: ", { submit = true })
+      end, { desc = "Ask opencode with context" })
+
+      vim.keymap.set({ "n", "x" }, "<leader>os", function()
+        require("opencode").select()
+      end, { desc = "Select opencode action" })
+
+      vim.keymap.set({ "n", "t" }, "<leader>ot", function()
+        require("opencode").toggle()
+      end, { desc = "Toggle opencode" })
+
+      vim.keymap.set({ "n", "x" }, "<leader>op", function()
+        require("opencode").prompt("review")
+      end, { desc = "Opencode prompt" })
+
+      -- Operator for adding ranges
+      vim.keymap.set({ "n", "x" }, "go", function()
+        return require("opencode").operator("@this ")
+      end, { desc = "Add range to opencode", expr = true })
+
+      vim.keymap.set("n", "goo", function()
+        return require("opencode").operator("@this ") .. "_"
+      end, { desc = "Add line to opencode", expr = true })
+
+      -- Scroll commands
+      vim.keymap.set("n", "<S-C-u>", function()
+        require("opencode").command("session.half.page.up")
+      end, { desc = "Scroll opencode up" })
+
+      vim.keymap.set("n", "<S-C-d>", function()
+        require("opencode").command("session.half.page.down")
+      end, { desc = "Scroll opencode down" })
+
+      -- Remap original C-a and C-x if needed
+      vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+      vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+    end,
+  },
 }
