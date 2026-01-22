@@ -181,7 +181,6 @@ return {
       { "<leader>tf", desc = "Toggle floating terminal" },
       { "<leader>th", desc = "Toggle horizontal terminal" },
       { "<leader>tv", desc = "Toggle vertical terminal" },
-      { "<leader>gg", desc = "Toggle LazyGit" },
     },
     config = function()
       require("config.plugins.toggleterm")
@@ -262,6 +261,7 @@ return {
     "yetone/avante.nvim",
     lazy = true,
     build = "make",
+    cmd = { "AvanteAsk", "AvanteRefresh", "AvanteEdit", "AvanteToggle", "AvanteClear" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",
@@ -273,6 +273,8 @@ return {
       { "<leader>aa", "<cmd>AvanteAsk<cr>", desc = "Avante Ask", mode = { "n", "v" } },
       { "<leader>ar", "<cmd>AvanteRefresh<cr>", desc = "Avante Refresh" },
       { "<leader>ae", "<cmd>AvanteEdit<cr>", desc = "Avante Edit", mode = "v" },
+      { "<leader>an", "<cmd>AvanteToggle<cr>", desc = "Avante New Chat" },
+      { "<leader>ac", "<cmd>AvanteClear<cr>", desc = "Avante Clear Chat" },
     },
     config = function()
       require("config.plugins.avante")
@@ -284,6 +286,16 @@ return {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     opts = {},
+  },
+
+  -- ==================== Discord Rich Presence ====================
+  {
+    "vyfor/cord.nvim",
+    build = "./build",
+    event = "VeryLazy",
+    opts = function()
+      return require("config.plugins.cord")
+    end,
   },
 
   -- Nui.nvim untuk UI components (dependency avante)

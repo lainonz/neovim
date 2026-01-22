@@ -78,28 +78,7 @@ function _VERTICAL_TERM_TOGGLE()
   vertical_term:toggle()
 end
 
--- LazyGit integration
-local lazygit = Terminal:new({
-  cmd = "lazygit",
-  direction = "float",
-  hidden = true,
-  float_opts = {
-    border = "curved",
-    width = function()
-      return math.floor(vim.o.columns * 0.9)
-    end,
-    height = function()
-      return math.floor(vim.o.lines * 0.9)
-    end,
-  },
-})
-
-function _LAZYGIT_TOGGLE()
-  lazygit:toggle()
-end
-
 -- Keymaps untuk toggle terminals
 vim.keymap.set("n", "<leader>tf", "<cmd>lua _FLOAT_TERM_TOGGLE()<CR>", { desc = "Toggle floating terminal" })
 vim.keymap.set("n", "<leader>th", "<cmd>lua _HORIZONTAL_TERM_TOGGLE()<CR>", { desc = "Toggle horizontal terminal" })
 vim.keymap.set("n", "<leader>tv", "<cmd>lua _VERTICAL_TERM_TOGGLE()<CR>", { desc = "Toggle vertical terminal" })
-vim.keymap.set("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle LazyGit" })

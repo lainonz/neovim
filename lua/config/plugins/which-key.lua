@@ -32,6 +32,8 @@ wk.add({
   { "<leader>aa", "<cmd>AvanteAsk<cr>", desc = "Ask AI" },
   { "<leader>ar", "<cmd>AvanteRefresh<cr>", desc = "Refresh" },
   { "<leader>ae", "<cmd>AvanteEdit<cr>", desc = "Edit with AI" },
+  { "<leader>an", "<cmd>AvanteToggle<cr>", desc = "New Chat" },
+  { "<leader>ac", "<cmd>AvanteClear<cr>", desc = "Clear Chat" },
   
   -- Git operations
   { "<leader>h", group = "Git Hunk" },
@@ -39,10 +41,6 @@ wk.add({
   { "<leader>hr", desc = "Reset Hunk" },
   { "<leader>hp", desc = "Preview Hunk" },
   { "<leader>hb", desc = "Blame Line" },
-  
-  -- LazyGit
-  { "<leader>g", group = "Git" },
-  { "<leader>gg", desc = "LazyGit" },
   
   -- Terminal
   { "<leader>t", group = "Terminal" },
